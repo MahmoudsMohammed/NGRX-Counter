@@ -1,28 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 import { CounterService } from '../counter.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-counter-output',
   templateUrl: './counter-output.component.html',
   styleUrls: ['./counter-output.component.css'],
 })
-export class CounterOutputComponent implements OnInit, OnDestroy {
-  counter = 0;
-  counterServiceSub?: Subscription;
-
-  constructor(private counterService: CounterService) {}
-
+export class CounterOutputComponent implements OnInit {
+  counter$!: Observable<number>;
+  store = inject(Store);
   ngOnInit(): void {
-    this.counterServiceSub = this.counterService.counterChanged.subscribe(
-      (newVal) => (this.counter = newVal)
-    );
-  }
-
-  ngOnDestroy(): void {
-    if (this.counterServiceSub) {
-      this.counterServiceSub.unsubscribe();
-    }
+    this.counter$ = this.store.select('counter');
   }
 }
