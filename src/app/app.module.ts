@@ -14,7 +14,7 @@ import { counterReducer } from './store/counter.reducer';
     CounterControlsComponent,
   ],
   // create a global object store (key[state key] : value [reference for reducer])
-  // reducer only way to change the state 
+  // reducer only way to change the state
   imports: [
     BrowserModule,
     StoreModule.forRoot({
