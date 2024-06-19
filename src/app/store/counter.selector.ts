@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-// selector take object with all state at the store object return what needed state slice
+// selector take object with all state slice at the store object return what needed state slice
 // after make logic on it
 export const selectCount = (state: { counter: number }) => state.counter;
 export const selectDoubleCount = (state: { counter: number }) =>

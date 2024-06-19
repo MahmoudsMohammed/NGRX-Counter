@@ -6,6 +6,8 @@ import { CounterOutputComponent } from './counter-output/counter-output.componen
 import { CounterControlsComponent } from './counter-controls/counter-controls.component';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './store/counter.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { counterEffect } from './store/counter.effect';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { counterReducer } from './store/counter.reducer';
     StoreModule.forRoot({
       counter: counterReducer,
     }),
+    // effect take array of side effect classes
+    EffectsModule.forRoot([counterEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent],
